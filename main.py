@@ -32,10 +32,12 @@ label_dict = {
     9:'Ankle boot'
 }
 
+# Define the model weight filename
 model_file = 'simple_nn_fashion_mnist_sequential_50e'
 # model_file = 'simple_nn_fashion_mnist_sequential'
 
 def load_model():
+    # Define a simple model
     model = nn.Sequential(
         nn.Flatten(start_dim=1),
         nn.Linear(28*28, 32),
@@ -45,6 +47,7 @@ def load_model():
         nn.Linear(32, 10)
     )
     
+    # Load model weight
     model.load_state_dict(torch.load(f'{model_file}.pth', weights_only=True))
     model.eval()
     return model
@@ -131,10 +134,12 @@ def visualize_image(original_input, perturbed_input, original_label, perturbed_l
     
     fig = plt.figure(figsize=(8, 4))
     
+    # Visualize the original image
     fig.add_subplot(1, 2, 1)
     plt.title(f'Original ({label_dict[original_label]})')
     plt.imshow(original_input)
     
+    # Visualize the perturbed image
     fig.add_subplot(1, 2, 2)
     plt.title(f'Perturbed ({label_dict[perturbed_label]})')
     plt.imshow(perturbed_input)
@@ -150,7 +155,6 @@ def visualize_embeddings(model, real_class_img, counter_class_img, original_inpu
     # Extract embeddings for original and perturbed inputs (images from test set)
     real_class_emb = model[:-1](torch.Tensor(np.array(real_class_img))).detach().numpy()
     counter_class_emb = model[:-1](torch.Tensor(np.array(counter_class_img))).detach().numpy()
-
 
     # Combine embeddings
     embs = np.concatenate((real_class_emb, counter_class_emb, original_input_emb, perturbed_input_emb))
@@ -259,6 +263,7 @@ def main():
             }
             
             # Visualization (Can be performed only if the result is SAT)
+            # X' is obtained from the last recorded logs -> logs[-1]
             if logs[-1]['result'] == 'sat':
                 
                 # ==== Preprocessing before visualization ====
