@@ -214,7 +214,7 @@ def main():
     epsilon = 0.01
     max_iteration = 20
     max_epsilon = 0.5
-    filename = 'verification-logs-2'
+    filename = 'verification-logs-3' # filename for exported logs
 
     # Load pretrained model weights
     model = load_model()
