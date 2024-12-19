@@ -24,7 +24,7 @@ pip3 install torch torchvision torchaudio --index-url https://download.pytorch.o
 
 
 ## Files and Directories
-- `/data` contains dataset location. This directory will be filled after running the `main.py` script, which contains a code to download the dataset, and put it inside the directory.
+- `/data`: Contains dataset location. This directory will be filled after running the `main.py` script, which contains a code to download the dataset, and put it inside the directory.
 - `*.png`: Figures resulted from analysis and verification.
 - `*.onnx`: Exported model in `ONNX` format required for marabou verification.
 - `*.pth` and `*.pt`: Exported model in PyTorch format. There are two models that can be used, such as `simple_nn_fashion_mnist_sequential` and `simple_nn_fashion_mnist_sequential_50e`. The only difference is the first model was trained for 10 epoch, meanwhile the other one is 50 epoch. To use one of the model, simply modify `model_file` variable with the desired model. The default model is the 50 epoch trained model.
